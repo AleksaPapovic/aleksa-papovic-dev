@@ -20,7 +20,9 @@
           {
             "glob": "**/*",
             "input": "apps/aleksapapovic/public"
-          }
+          },
+          "apps/aleksapapovic/src/favicon.ico",
+          "apps/aleksapapovic/src/assets"
         ],
         "styles": ["apps/aleksapapovic/src/styles.scss"]
       },

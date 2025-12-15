@@ -1,2 +1,34 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="app-shell">
+  <canvas #bgCanvas class="background-canvas" aria-hidden="true"></canvas>
+  <header class="app-header">
+    <div class="brand-block"></div>
+
+    <nav aria-label="Primary" class="app-nav">
+      <!-- <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+      >
+        Home
+      </a>
+      <a routerLink="/experience" routerLinkActive="active" class="nav-link">
+        Experience
+      </a> -->
+    </nav>
+
+    <div class="avatar-wrapper">
+      <img
+        src="https://github.com/aleksapapovic.png"
+        alt="Aleksa Papovic"
+        class="avatar-img"
+      />
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="content-panel">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>
