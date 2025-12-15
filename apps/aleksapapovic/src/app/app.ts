@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { ThreeBackgroundComponent } from './three-init/three-init.component';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule, ThreeBackgroundComponent],
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrls: ['./app.scss'],
 })
-export class App {
-  protected title = 'aleksapapovic';
-}
+export class App {}
