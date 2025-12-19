@@ -1,5 +1,9 @@
-<div class="app-shell">
-  <canvas #bgCanvas class="background-canvas" aria-hidden="true"></canvas>
+<app-splash-screen
+  (animationCompleted)="onSplashAnimationCompleted()"
+  *ngIf="!appContentVisible"
+></app-splash-screen>
+
+<div *ngIf="appContentVisible" class="app-shell">
   <header class="app-header">
     <div class="brand-block"></div>
 
@@ -16,14 +20,6 @@
         Experience
       </a> -->
     </nav>
-
-    <div class="avatar-wrapper">
-      <img
-        src="https://github.com/aleksapapovic.png"
-        alt="Aleksa Papovic"
-        class="avatar-img"
-      />
-    </div>
   </header>
 
   <main class="app-main">

@@ -3,9 +3,12 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { SplashScreenComponent } from './splash-screen.component';
 import {
   BufferGeometry,
   Color,
@@ -16,9 +19,11 @@ import {
   Scene,
   WebGLRenderer,
 } from 'three';
+import Lenis from 'lenis';
 
 @Component({
-  imports: [RouterModule],
+  standalone: true,
+  imports: [RouterOutlet, NgIf, SplashScreenComponent],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
@@ -32,6 +37,35 @@ export class App implements AfterViewInit, OnDestroy {
   private camera = new PerspectiveCamera(60, 1, 0.1, 200);
   private particles?: Points;
   private frameId?: number;
+
+  title = 'andresjosehr-portfolio';
+  appContentVisible = false;
+
+  private lenis!: Lenis;
+
+  onSplashAnimationCompleted(): void {
+    this.appContentVisible = true;
+
+    setTimeout(() => {
+      this.initLenis();
+    }, 100);
+  }
+
+  private initLenis(): void {
+    this.lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    const raf = (time: number) => {
+      this.lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
 
   ngAfterViewInit(): void {
     if (!this.bgCanvas?.nativeElement || typeof window === 'undefined') {
@@ -55,6 +89,9 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.lenis) {
+      this.lenis.destroy();
+    }
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', this.resize);
     }

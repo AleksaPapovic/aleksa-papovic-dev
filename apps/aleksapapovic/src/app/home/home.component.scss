@@ -1,0 +1,18 @@
+body,
+.container {
+  background: #f5f7fa;
+}
+.card {
+  min-height: 215px;
+  transition: box-shadow 0.18s;
+  border-radius: 1.15rem;
+  border: none;
+  box-shadow: 0 4px 22px #cfe7fd19;
+}
+.card:hover {
+  box-shadow: 0 10px 32px #48b0f733;
+  transform: translateY(-4px) scale(1.025);
+}
+.card h2 {
+  letter-spacing: 0.04em;
+}
