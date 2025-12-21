@@ -28,7 +28,7 @@ export class SplashScreenComponent implements AfterViewInit, OnInit {
   gradientCanvas!: ElementRef<HTMLCanvasElement>;
   @Output() animationCompleted = new EventEmitter<void>();
   loaderPercent = 0;
-  private duration = 1100;
+  private duration = 2000;
   private renderer?: WebGLRenderer;
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class SplashScreenComponent implements AfterViewInit, OnInit {
       if (this.loaderPercent < 100) {
         requestAnimationFrame(animateProgress);
       } else {
-        setTimeout(() => this.animationCompleted.emit(), 340);
+        this.animationCompleted.emit();
       }
     };
     requestAnimationFrame(animateProgress);

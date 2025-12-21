@@ -1,7 +1,4 @@
-<app-splash-screen
-  (animationCompleted)="onSplashAnimationCompleted()"
-  *ngIf="!appContentVisible"
-></app-splash-screen>
+<app-splash-screen *ngIf="!appContentVisible"></app-splash-screen>
 
 <div *ngIf="appContentVisible" class="app-shell">
   <header class="app-header">

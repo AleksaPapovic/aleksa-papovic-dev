@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -19,7 +18,6 @@ import {
   Scene,
   WebGLRenderer,
 } from 'three';
-import Lenis from 'lenis';
 
 @Component({
   standalone: true,
@@ -41,30 +39,10 @@ export class App implements AfterViewInit, OnDestroy {
   title = 'andresjosehr-portfolio';
   appContentVisible = false;
 
-  private lenis!: Lenis;
-
-  onSplashAnimationCompleted(): void {
-    this.appContentVisible = true;
-
+  ngOnInit(): void {
     setTimeout(() => {
-      this.initLenis();
-    }, 100);
-  }
-
-  private initLenis(): void {
-    this.lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      syncTouch: false,
-    });
-
-    const raf = (time: number) => {
-      this.lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
+      this.appContentVisible = true;
+    }, 2000);
   }
 
   ngAfterViewInit(): void {
@@ -89,9 +67,6 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.lenis) {
-      this.lenis.destroy();
-    }
     if (typeof window !== 'undefined') {
       window.removeEventListener('resize', this.resize);
     }
