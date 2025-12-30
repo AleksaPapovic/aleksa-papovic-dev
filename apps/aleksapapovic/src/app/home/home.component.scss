@@ -1,6 +1,5 @@
-body,
-.container {
-  background: #f5f7fa;
+.wip-banner {
+  background: transparent;
 }
 .card {
   min-height: 215px;
@@ -15,4 +14,47 @@ body,
 }
 .card h2 {
   letter-spacing: 0.04em;
+}
+.blog-card {
+  box-shadow: 0 2px 20px #2875bd17;
+  transition: box-shadow 0.14s, transform 0.14s;
+}
+.blog-card:hover {
+  box-shadow: 0 10px 32px #477ce933;
+  transform: translateY(-3px) scale(1.013);
+}
+.contact-badge {
+  display: inline-block;
+  padding: 0.37em 1.12em;
+  font-size: 1.04rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 22px;
+  margin: 0 0.1em 0.13em 0;
+  text-decoration: none;
+  transition: background 0.17s, box-shadow 0.14s;
+  box-shadow: 0 2px 10px #285a9311;
+}
+.patreon { background: #ff424d; }
+.youtube { background: #f31559; }
+.linkedin { background: #2563eb; }
+.twitter { background: #1898f7; }
+.github { background: #22272e; }
+.contact-badge:hover { filter: brightness(1.18) contrast(1.04); text-decoration: underline; }
+.technology-tile {
+  min-height: 44px;
+  box-shadow: 0 3px 16px #277ba41a;
+  border-radius: 0.85rem;
+  margin-bottom: 0px;
+  transition: box-shadow .17s, transform .13s;
+  padding: 0.85rem 0.4rem;
+}
+.technology-tile:hover {
+  box-shadow: 0 4px 16px #2270b133;
+  transform: translateY(-2px) scale(1.022);
+}
+.small-tile {
+  min-width: 0;
+  min-height: unset!important;
+  font-size: 0.98rem;
 }

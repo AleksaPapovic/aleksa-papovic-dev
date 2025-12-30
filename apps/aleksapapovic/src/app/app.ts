@@ -1,132 +1,20 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { SplashScreenComponent } from './splash-screen.component';
-import {
-  BufferGeometry,
-  Color,
-  Float32BufferAttribute,
-  PerspectiveCamera,
-  Points,
-  PointsMaterial,
-  Scene,
-  WebGLRenderer,
-} from 'three';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   standalone: true,
-  imports: [RouterOutlet, NgIf, SplashScreenComponent],
+  imports: [RouterOutlet, NavbarComponent],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })
-export class App implements AfterViewInit, OnDestroy {
-  @ViewChild('bgCanvas', { static: true })
-  bgCanvas?: ElementRef<HTMLCanvasElement>;
-
-  private renderer?: WebGLRenderer;
-  private scene = new Scene();
-  private camera = new PerspectiveCamera(60, 1, 0.1, 200);
-  private particles?: Points;
-  private frameId?: number;
-
-  title = 'andresjosehr-portfolio';
+export class App {
   appContentVisible = false;
 
   ngOnInit(): void {
     setTimeout(() => {
       this.appContentVisible = true;
-    }, 2000);
+    }, 1300);
   }
-
-  ngAfterViewInit(): void {
-    if (!this.bgCanvas?.nativeElement || typeof window === 'undefined') {
-      return;
-    }
-
-    this.scene.background = new Color('transparent');
-    this.renderer = new WebGLRenderer({
-      canvas: this.bgCanvas.nativeElement,
-      antialias: true,
-      alpha: true,
-    });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.camera.position.z = 50;
-
-    this.createParticles();
-
-    this.resize();
-    window.addEventListener('resize', this.resize);
-    this.animate();
-  }
-
-  ngOnDestroy(): void {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', this.resize);
-    }
-
-    if (this.frameId) {
-      cancelAnimationFrame(this.frameId);
-      this.frameId = undefined;
-    }
-
-    this.renderer?.dispose();
-  }
-
-  private createParticles(): void {
-    const count = 900;
-    const geometry = new BufferGeometry();
-    const positions = new Float32Array(count * 3);
-
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 70;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
-    }
-
-    geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
-
-    this.particles = new Points(
-      geometry,
-      new PointsMaterial({
-        color: 0x61dafb,
-        size: 1.1,
-        sizeAttenuation: true,
-        transparent: true,
-        opacity: 0.85,
-      })
-    );
-
-    this.scene.add(this.particles);
-  }
-
-  private animate = (): void => {
-    if (!this.renderer || !this.particles) {
-      return;
-    }
-
-    const time = performance.now() * 0.0004;
-    this.particles.rotation.y = time * 0.5;
-    this.particles.rotation.x = Math.sin(time) * 0.3;
-
-    this.renderer.render(this.scene, this.camera);
-    this.frameId = requestAnimationFrame(this.animate);
-  };
-
-  private resize = (): void => {
-    if (!this.renderer || typeof window === 'undefined') {
-      return;
-    }
-
-    const { innerWidth: width, innerHeight: height } = window;
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height, false);
-  };
 }

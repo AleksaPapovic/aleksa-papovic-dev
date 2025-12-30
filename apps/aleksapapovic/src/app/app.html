@@ -1,24 +1,5 @@
-<app-splash-screen *ngIf="!appContentVisible"></app-splash-screen>
-
-<div *ngIf="appContentVisible" class="app-shell">
-  <header class="app-header">
-    <div class="brand-block"></div>
-
-    <nav aria-label="Primary" class="app-nav">
-      <!-- <a
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="nav-link"
-      >
-        Home
-      </a>
-      <a routerLink="/experience" routerLinkActive="active" class="nav-link">
-        Experience
-      </a> -->
-    </nav>
-  </header>
-
+<div class="app-shell">
+  <app-navbar></app-navbar>
   <main class="app-main">
     <section class="content-panel">
       <router-outlet></router-outlet>
