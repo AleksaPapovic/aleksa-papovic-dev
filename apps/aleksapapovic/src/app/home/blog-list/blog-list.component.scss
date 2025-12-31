@@ -4,10 +4,31 @@
 }
 
 .blog-card {
+  text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 2px 20px #2875bd17;
   transition: box-shadow 0.14s, transform 0.14s;
 }
 .blog-card:hover {
   box-shadow: 0 10px 32px #477ce933;
   transform: translateY(-3px) scale(1.013);
+}
+
+.blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(75, 85, 99, 0.9);
+  margin-bottom: 8px;
+}
+
+.blog-dot {
+  opacity: 0.6;
+}
+
+.blog-cta {
+  margin-top: 14px;
+  font-weight: 800;
+  color: #1d4ed8;
 }

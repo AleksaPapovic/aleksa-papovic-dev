@@ -1,0 +1,22 @@
+<section class="timeline-page px-4 py-10">
+  <div class="timeline-card mx-auto">
+    <a class="back-link" [routerLink]="['/about']">← Back to About</a>
+
+    <ng-container *ngIf="item() as it; else notFound">
+      <h1 class="title">{{ it.title }}</h1>
+      <p class="subtitle" *ngIf="it.subtitle">{{ it.subtitle }}</p>
+      <p class="summary">{{ it.summary }}</p>
+
+      <ul class="details">
+        <li *ngFor="let d of it.details">{{ d }}</li>
+      </ul>
+    </ng-container>
+
+    <ng-template #notFound>
+      <h1 class="title">Timeline item not found</h1>
+      <p class="summary">This item doesn’t exist (or the URL is wrong).</p>
+    </ng-template>
+  </div>
+</section>
+
+

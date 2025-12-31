@@ -1,0 +1,136 @@
+.post-page {
+  min-height: 100vh;
+  background: radial-gradient(900px 500px at 15% 15%, rgba(59, 130, 246, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 85% 40%, rgba(16, 185, 129, 0.1), transparent 60%);
+}
+
+.post-shell {
+  width: min(860px, 100%);
+}
+
+.post-back {
+  display: inline-block;
+  font-weight: 800;
+  color: #1d4ed8;
+  text-decoration: none;
+  margin-bottom: 18px;
+}
+
+.post-header {
+  padding: 4px 0 14px;
+}
+
+.post-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: rgba(75, 85, 99, 0.95);
+}
+
+.post-dot {
+  opacity: 0.6;
+}
+
+.post-title {
+  margin-top: 10px;
+  font-size: 2.6rem;
+  line-height: 3.05rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: rgba(17, 24, 39, 0.95);
+}
+
+.post-desc {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+  color: rgba(55, 65, 81, 0.95);
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.post-tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: rgba(17, 24, 39, 0.85);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.post-hero {
+  margin-top: 18px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(16, 24, 40, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.post-hero img {
+  width: 100%;
+  height: min(420px, 38vh);
+  object-fit: cover;
+  display: block;
+}
+
+.post-body {
+  margin-top: 22px;
+  padding-bottom: 20px;
+}
+
+.post-p {
+  font-size: 1.12rem;
+  line-height: 2rem;
+  color: rgba(17, 24, 39, 0.92);
+  margin: 14px 0;
+}
+
+.post-h2 {
+  margin: 22px 0 10px;
+  font-size: 1.55rem;
+  line-height: 2.05rem;
+  font-weight: 900;
+  color: rgba(17, 24, 39, 0.95);
+}
+
+.post-ul {
+  margin: 10px 0 18px;
+  padding-left: 22px;
+  color: rgba(17, 24, 39, 0.92);
+}
+
+.post-ul li {
+  margin: 10px 0;
+  line-height: 1.85rem;
+  font-size: 1.08rem;
+}
+
+.post-code {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(17, 24, 39, 0.9);
+  color: rgba(255, 255, 255, 0.92);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.post-code code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.post-notfound {
+  padding: 24px 0;
+}
+
+

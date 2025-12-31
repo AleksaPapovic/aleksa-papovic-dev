@@ -1,0 +1,69 @@
+<section class="splash-container">
+  <canvas #gradientCanvas class="background-canvas"></canvas>
+
+  <div class="business-card">
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="onSubmit()"
+      class="contact-form"
+      *ngIf="!sent"
+    >
+      <input
+        placeholder="Name"
+        type="text"
+        formControlName="name"
+        class="contact-input"
+        [class.border-red-400]="submitted && contactForm.get('name')?.invalid"
+      />
+
+      <input
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+        class="contact-input"
+        [class.border-red-400]="submitted && contactForm.get('email')?.invalid"
+      />
+
+      <textarea
+        placeholder="Message"
+        formControlName="message"
+        class="contact-input contact-textarea"
+        [class.border-red-400]="
+          submitted && contactForm.get('message')?.invalid
+        "
+      ></textarea>
+
+      <input
+        type="text"
+        formControlName="captcha"
+        placeholder="Anti-bot: Type blue42"
+        class="contact-input"
+        [class.border-red-400]="
+          submitted && (!captchaPassed || contactForm.get('captcha')?.invalid)
+        "
+        (blur)="checkCaptcha()"
+      />
+
+      <div *ngIf="error" class="text-red-500 text-sm pt-1 text-center">
+        {{ error }}
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary contact-submit bg-blue-600 text-white hover:bg-blue-800 transition"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Sending...' : 'Send Message' }}
+      </button>
+    </form>
+
+    <div *ngIf="sent" class="py-8 text-center">
+      <p class="text-xl font-bold text-emerald-600">
+        Thank you for reaching out!
+      </p>
+      <p class="text-gray-600">
+        Your message has been sent. I'll get back to you soon.
+      </p>
+    </div>
+  </div>
+</section>

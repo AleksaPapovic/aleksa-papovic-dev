@@ -1,0 +1,53 @@
+<section class="post-page px-4 py-10">
+  <div class="post-shell mx-auto">
+    <a class="post-back" [routerLink]="['/']">← Back</a>
+
+    <ng-container *ngIf="post() as p; else notFound">
+      <header class="post-header">
+        <div class="post-kicker">
+          <span class="post-date">{{ p.date }}</span>
+          <span class="post-dot">•</span>
+          <span class="post-read">{{ p.readMinutes }} min read</span>
+        </div>
+
+        <h1 class="post-title">{{ p.title }}</h1>
+        <p class="post-desc">{{ p.description }}</p>
+
+        <div class="post-tags">
+          <span class="post-tag" *ngFor="let t of p.tags">{{ t }}</span>
+        </div>
+      </header>
+
+      <div class="post-hero">
+        <img [src]="p.image" [alt]="p.title" />
+      </div>
+
+      <article class="post-body">
+        <ng-container *ngFor="let block of p.content">
+          <p *ngIf="block.type === 'p'" class="post-p">
+            {{ block.text }}
+          </p>
+
+          <h2 *ngIf="block.type === 'h2'" class="post-h2">
+            {{ block.text }}
+          </h2>
+
+          <ul *ngIf="block.type === 'ul'" class="post-ul">
+            <li *ngFor="let it of block.items">{{ it }}</li>
+          </ul>
+
+          <pre *ngIf="block.type === 'code'" class="post-code"><code>{{ block.text }}</code></pre>
+        </ng-container>
+      </article>
+    </ng-container>
+
+    <ng-template #notFound>
+      <div class="post-notfound">
+        <h1 class="post-title">Post not found</h1>
+        <p class="post-desc">This blog post doesn’t exist (or the URL is wrong).</p>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+
