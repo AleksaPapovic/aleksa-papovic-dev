@@ -1,26 +1,32 @@
-<section class="hero-wallpaper px-4 py-10">
+<section class="hero-wallpaper px-4">
   <div
-    class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
+    class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 items-start"
   >
     <div
-      #heroCanvasWrap
-      class="hero-canvas-wrap relative rounded-2xl overflow-hidden border border-white/25 shadow-xl"
-      tabindex="0"
-      aria-label="3D character demo. Click to focus, then move with arrow keys. Hold Shift to run."
+      class="hero-terminal-wrap relative rounded-2xl overflow-hidden border border-white/25 shadow-xl"
     >
-      <canvas #heroCanvas class="hero-canvas"></canvas>
-      <div class="hero-overlay">
-        <div class="hero-code">
-          <div class="hero-code-line">const developer = 'Aleksa Papovic';</div>
-          <div class="hero-code-line hero-code-wrap">
-            const stack = ['AWS', '.Net Core', 'Angular', 'React', 'Nx'];
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
           </div>
+          <div class="terminal-title">telnet</div>
         </div>
+
+        <pre
+          #terminalScreen
+          class="terminal-screen"
+          tabindex="0"
+          (keydown)="
+            onTerminalKeyDown($event)
+          ">{{ terminalText }}{{ userInput }}<span class="terminal-cursor">█</span></pre>
       </div>
     </div>
 
     <div
-      class="hero-profile flex flex-col items-center justify-center text-center"
+      class="hero-profile flex flex-col items-center lg:items-start justify-center text-center lg:text-left"
     >
       <div class="hero-photo-wrap">
         <img
@@ -35,14 +41,51 @@
 
       <div class="mt-5">
         <div class="hero-name">Aleksa Papovic</div>
-        <div class="hero-title">Software Engineer</div>
-        <div class="hero-subtitle">
-          Building modern, scalable web apps with a focus on UX and performance.
-        </div>
+        <div class="hero-title text-center">Fullstack Software Engineer</div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="expertise-section">
+  <div class="expertise-container">
+    <div class="expertise-content-card">
+      <p class="expertise-summary">
+        Prospective software engineer with extensive knowledge and experience in
+        software engineering on large and complex projects.
+      </p>
+
+      <ul class="expertise-bullets">
+        <li>Software architecture | Database architecture</li>
+        <li>Domain Driven Design | SOLID</li>
+        <li>Distributed systems | Microservices</li>
+        <li>Micro frontend | Monorepo</li>
+        <li>DevOps | CI/CD</li>
+        <li>Blockchain</li>
+      </ul>
+
+      <p class="expertise-summary expertise-summary--spaced">
+        Some areas of my expertise encompass:
+      </p>
+
+      <ul class="expertise-bullets expertise-bullets--two-col">
+        <li>C# | .NET Core | Minimal API</li>
+        <li>Java | Spring Boot</li>
+        <li>JavaScript | React | Vue</li>
+        <li>TypeScript | Angular | Nx</li>
+        <li>SQL | PostgreSQL | MS SQL Server | Oracle</li>
+        <li>NoSQL | DynamoDB | MongoDB | Neo4j | Redis</li>
+        <li>Go | Hyperledger Fabric | CouchDB</li>
+        <li>RabbitMQ | Kafka | SignalR</li>
+        <li>AWS | Azure | Docker | Kubernetes</li>
+        <li>Rust</li>
+        <li>Python</li>
+        <li>PHP | WordPress</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
     <div

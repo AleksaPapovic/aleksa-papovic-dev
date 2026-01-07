@@ -1,69 +1,153 @@
 <section class="splash-container">
   <canvas #gradientCanvas class="background-canvas"></canvas>
 
-  <div class="business-card">
-    <form
-      [formGroup]="contactForm"
-      (ngSubmit)="onSubmit()"
-      class="contact-form"
-      *ngIf="!sent"
-    >
-      <input
-        placeholder="Name"
-        type="text"
-        formControlName="name"
-        class="contact-input"
-        [class.border-red-400]="submitted && contactForm.get('name')?.invalid"
-      />
+  <div class="contact-container">
+    <!-- Left Half: Contact Form -->
+    <div class="contact-form-wrapper">
+      <div class="business-card">
+        <h2 class="contact-form-title">Contact Form</h2>
+        <p class="contact-form-subtitle">Please complete the form below to send a message</p>
+        
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+          class="contact-form"
+          *ngIf="!sent"
+        >
+          <input
+            placeholder="Your Name"
+            type="text"
+            formControlName="name"
+            class="contact-input"
+            [class.border-red-400]="submitted && contactForm.get('name')?.invalid"
+          />
 
-      <input
-        placeholder="Email"
-        type="email"
-        formControlName="email"
-        class="contact-input"
-        [class.border-red-400]="submitted && contactForm.get('email')?.invalid"
-      />
+          <input
+            placeholder="Your Email"
+            type="email"
+            formControlName="email"
+            class="contact-input"
+            [class.border-red-400]="submitted && contactForm.get('email')?.invalid"
+          />
 
-      <textarea
-        placeholder="Message"
-        formControlName="message"
-        class="contact-input contact-textarea"
-        [class.border-red-400]="
-          submitted && contactForm.get('message')?.invalid
-        "
-      ></textarea>
+          <textarea
+            placeholder="Your Message"
+            formControlName="message"
+            class="contact-input contact-textarea"
+            [class.border-red-400]="
+              submitted && contactForm.get('message')?.invalid
+            "
+          ></textarea>
 
-      <input
-        type="text"
-        formControlName="captcha"
-        placeholder="Anti-bot: Type blue42"
-        class="contact-input"
-        [class.border-red-400]="
-          submitted && (!captchaPassed || contactForm.get('captcha')?.invalid)
-        "
-        (blur)="checkCaptcha()"
-      />
+          <input
+            type="text"
+            formControlName="captcha"
+            placeholder="Anti-bot: Type blue42"
+            class="contact-input"
+            [class.border-red-400]="
+              submitted && (!captchaPassed || contactForm.get('captcha')?.invalid)
+            "
+            (blur)="checkCaptcha()"
+          />
 
-      <div *ngIf="error" class="text-red-500 text-sm pt-1 text-center">
-        {{ error }}
+          <div *ngIf="error" class="text-red-500 text-sm pt-1 text-center">
+            {{ error }}
+          </div>
+
+          <button
+            type="submit"
+            class="btn-primary contact-submit bg-blue-600 text-white hover:bg-blue-800 transition"
+            [disabled]="loading"
+          >
+            {{ loading ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
+
+        <div *ngIf="sent" class="py-8 text-center">
+          <p class="text-xl font-bold text-emerald-600">
+            Thank you for reaching out!
+          </p>
+          <p class="text-gray-600">
+            Your message has been sent. I'll get back to you soon.
+          </p>
+        </div>
       </div>
+    </div>
 
-      <button
-        type="submit"
-        class="btn-primary contact-submit bg-blue-600 text-white hover:bg-blue-800 transition"
-        [disabled]="loading"
-      >
-        {{ loading ? 'Sending...' : 'Send Message' }}
-      </button>
-    </form>
+    <!-- Right Half: Engaging Content -->
+    <div class="contact-content-wrapper">
+      <div class="contact-content">
+        <div class="content-header">
+          <h1 class="content-title">Connect With Me</h1>
+          <div class="content-divider"></div>
+        </div>
 
-    <div *ngIf="sent" class="py-8 text-center">
-      <p class="text-xl font-bold text-emerald-600">
-        Thank you for reaching out!
-      </p>
-      <p class="text-gray-600">
-        Your message has been sent. I'll get back to you soon.
-      </p>
+        <div class="content-body">
+          <div class="content-section">
+            <p class="section-text">
+              Should you require to establish contact, please utilize the contact form provided. 
+              I welcome inquiries regarding technical discussions, project consultations, or 
+              professional networking opportunities.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h3 class="section-title">Strategic Technical Expertise</h3>
+            <p class="section-text">
+              I specialize in designing and implementing scalable software architectures that align 
+              with your business objectives. Through Domain-Driven Design principles and comprehensive 
+              system architecture planning, I help organizations build robust solutions that reduce 
+              technical debt, improve maintainability, and accelerate time-to-market.
+            </p>
+          </div>
+
+          <div class="content-section">
+            <h3 class="section-title">Business Value Delivery</h3>
+            <ul class="benefits-list">
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Domain-Driven Design implementation for complex business domains</span>
+              </li>
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Enterprise system architecture design and optimization</span>
+              </li>
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Scalable solutions that grow with your business needs</span>
+              </li>
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Reduced technical debt through strategic refactoring and best practices</span>
+              </li>
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Cloud-native architectures that optimize operational costs</span>
+              </li>
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>Microservices and distributed systems for enhanced agility</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-section">
+            <h3 class="section-title">Why This Matters for Your Business</h3>
+            <p class="section-text">
+              Well-architected systems translate directly to reduced maintenance costs, faster feature 
+              delivery, and improved team productivity. By applying Domain-Driven Design and sound 
+              architectural principles, I ensure your technology investments support long-term business 
+              growth rather than becoming a constraint.
+            </p>
+          </div>
+
+          <div class="content-cta">
+            <p class="cta-text">
+              I aim to respond to all inquiries within 24 hours. I look forward to your correspondence.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
